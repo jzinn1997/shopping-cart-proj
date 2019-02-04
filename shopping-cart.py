@@ -23,9 +23,23 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
+#time 
+
+import datetime as dt
+t = datetime.datetime.now()
+print(type(t))
+print(t)
+#print("STARTED AT: " + t)
+print(t.strftime("%Y-%m-%d"))
+
+
+
 #
 # INFO CAPTURE / INPUT
 #
+
+
+
 
 total_price = 0
 selected_ids = []
@@ -53,9 +67,39 @@ for selected_id in selected_ids:
     matching_product = matching_products[0]
     total_price = total_price + matching_product["price"]
     print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
-    
 
-print("TOTAL PRICE: " + str(total_price)) #TODO format as USD
+x = 1
+
+running_total = 0
+
+while x < 5: # todo: restore infinite looping condition
+    # todo: ask the user to input a product id
+    selected_id = 1 # input("Please select a product id (1-20)")
+    #product = {
+    #    "id":1, 
+    #    "name": "Chocolate Sandwich Cookies", 
+    #    "department": "snacks", 
+    #    "aisle": "cookies cakes", 
+    #    "price": 3.50
+    #}
+    matching_products = [p for p in products if p["id"] == selected_id]
+    product = matching_products[0]
+    price = product["price"] #4.95 # todo: lookup actual price of the scanned/selected product
+    running_total = running_total + price
+    x = x + 1
+
+tax = running_total * .06
+price = tax + running_total
+
+running_total = "${0:.2f}".format(price)
+print("THE TOTAL PRICE IS: " + str(running_total))
+
+
+
+
+
+
+
 
 
 
