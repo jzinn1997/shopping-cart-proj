@@ -25,21 +25,18 @@ products = [
 
 #time 
 
-import datetime as dt
+import datetime
 t = datetime.datetime.now()
 print(type(t))
 print(t)
 #print("STARTED AT: " + t)
-print(t.strftime("%Y-%m-%d"))
+print(t.strftime("%Y-%m-%d %I:%M %p"))
 
 
 
 #
 # INFO CAPTURE / INPUT
 #
-
-
-
 
 total_price = 0
 selected_ids = []
@@ -61,6 +58,13 @@ while True:
 #
  
 #print(selected_ids)
+
+print("----------------")
+print("JOSIE'S GROCERIES")
+print("WWW.JOSIE'S-GROCERIES.COM")
+print("----------------")
+print("CHECKOUT AT: " + t.strftime("%Y-%m-%d %I:%M %p"))
+print("----------------")
 
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
@@ -93,13 +97,6 @@ price = tax + running_total
 
 running_total = "${0:.2f}".format(price)
 print("THE TOTAL PRICE IS: " + str(running_total))
-
-
-
-
-
-
-
 
 
 
