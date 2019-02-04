@@ -59,6 +59,8 @@ while True:
  
 #print(selected_ids)
 
+#print receipt
+
 print("----------------")
 print("JOSIE'S GROCERIES")
 print("WWW.JOSIE'S-GROCERIES.COM")
@@ -66,13 +68,18 @@ print("----------------")
 print("CHECKOUT AT: " + t.strftime("%Y-%m-%d %I:%M %p"))
 print("----------------")
 
+def to_usd(my_price):
+    return "${0:,.2f}".format(my_price)
+
+
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
     total_price = total_price + matching_product["price"]
-    print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
+    print("SELECTED PRODUCT: " + matching_product["name"] + " (" + to_usd(matching_product["price"])+ ")")
 
-x = 1
+
+""" x = 1
 
 running_total = 0
 
@@ -90,13 +97,18 @@ while x < 5: # todo: restore infinite looping condition
     product = matching_products[0]
     price = product["price"] #4.95 # todo: lookup actual price of the scanned/selected product
     running_total = running_total + price
-    x = x + 1
+    x = x + 1 """
 
-tax = running_total * .06
-price = tax + running_total
 
-running_total = "${0:.2f}".format(price)
-print("THE TOTAL PRICE IS: " + str(running_total))
+print("SUBTOTAL: " + to_usd(total_price))
+
+
+
+
+
+
+
+
 
 
 
