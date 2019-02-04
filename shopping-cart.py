@@ -76,7 +76,12 @@ for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
     total_price = total_price + matching_product["price"]
-    print("SELECTED PRODUCT: " + matching_product["name"] + " (" + to_usd(matching_product["price"])+ ")")
+    print("SELECTED PRODUCTS: " + matching_product["name"] + " (" + to_usd(matching_product["price"])+ ")")
+
+tax_rate = 0.06 # constant tax rate for DC
+
+tax = total_price * tax_rate
+total_price = total_price + tax
 
 
 """ x = 1
@@ -101,16 +106,4 @@ while x < 5: # todo: restore infinite looping condition
 
 
 print("SUBTOTAL: " + to_usd(total_price))
-
-
-
-
-
-
-
-
-
-
-
-
 
