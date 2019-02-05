@@ -23,7 +23,6 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-#time 
 
 import datetime
 t = datetime.datetime.now()
@@ -32,13 +31,11 @@ print(t)
 #print("STARTED AT: " + t)
 print(t.strftime("%Y-%m-%d %I:%M %p"))
 
-
-
 #
 # INFO CAPTURE / INPUT
 #
 
-total_price = 0
+subtotal_price = 0
 selected_ids = []
 
 while True:
@@ -61,12 +58,12 @@ while True:
 
 #print receipt
 
-print("----------------")
+print("---------------------------")
 print("JOSIE'S GROCERIES")
 print("WWW.JOSIE'S-GROCERIES.COM")
-print("----------------")
+print("---------------------------")
 print("CHECKOUT AT: " + t.strftime("%Y-%m-%d %I:%M %p"))
-print("----------------")
+print("---------------------------")
 
 def to_usd(my_price):
     return "${0:,.2f}".format(my_price)
@@ -75,14 +72,13 @@ def to_usd(my_price):
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
-    total_price = total_price + matching_product["price"]
-    print("SELECTED PRODUCTS: " + matching_product["name"] + " (" + to_usd(matching_product["price"])+ ")")
+    subtotal_price = subtotal_price + matching_product["price"]
+    print("SELECTED PRODUCT: " + matching_product["name"] + " (" + to_usd(matching_product["price"])+ ")")
 
 tax_rate = 0.06 # constant tax rate for DC
 
-tax = total_price * tax_rate
-total_price = total_price + tax
-
+tax = subtotal_price * tax_rate
+total_price = subtotal_price + tax
 
 """ x = 1
 
@@ -104,6 +100,10 @@ while x < 5: # todo: restore infinite looping condition
     running_total = running_total + price
     x = x + 1 """
 
-
-print("SUBTOTAL: " + to_usd(total_price))
-
+print("---------------------------")
+print("SUBTOTAL: " + to_usd(subtotal_price))
+print("TAX: " + to_usd(tax))
+print("TOTAL: " + to_usd(total_price))
+print("---------------------------")
+print("THANKS FOR SHOPPING AT JOSIE'S GROCIES!")
+print("---------------------------")
